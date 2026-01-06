@@ -27,6 +27,34 @@
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
+<script>
+    function calculateWorkingDays(startDate, endDate) {
+        let count = 0;
+        const current = new Date(startDate);
+
+        while (current <= endDate) {
+            const day = current.getDay();
+            if (day !== 0 && day !== 6) {
+                count++;
+            }
+            current.setDate(current.getDate() + 1);
+        }
+        return count;
+    }
+
+    const startDate = new Date('2021-06-01');
+    const today = new Date();
+
+    const workingDays = calculateWorkingDays(startDate, today);
+    const hoursPerDay = 8;
+
+    const totalHours = Math.floor((workingDays * hoursPerDay) / 100) * 100;
+
+    const counter = document.getElementById('dev-hours');
+    counter.setAttribute('data-purecounter-end', totalHours);
+</script>
+
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -238,8 +266,13 @@
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1600" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Development</p>
+            <span
+              id="dev-hours"
+              data-purecounter-start="0"
+              data-purecounter-duration="1"
+              class="purecounter">
+            </span>
+              <p>Hours Of Development</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
@@ -600,6 +633,22 @@
           </div>
 
         </div>
+
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="member">
+                    <img src="assets/img/vehikl.jpg" class="img-fluid" alt="">
+                    <div class="member-info">
+                        <div class="member-info-content">
+                            <h4>Full-Stack Developer</h4>
+                            <span>Vehikl</span>
+                            <div class="social">
+                                <a href="https://vehikl.com/"><i class="bi bi-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
       </div>
     </section><!-- End Roles Section -->
